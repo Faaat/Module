@@ -1,4 +1,4 @@
-package com.felix.baselibrary;
+package com.felix.baselibrary.UI;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,6 +11,8 @@ import android.util.Log;
 import android.util.TypedValue;
 
 import androidx.appcompat.widget.AppCompatTextView;
+
+import com.felix.baselibrary.R;
 
 
 /**
@@ -33,14 +35,13 @@ public class TextViewWithIdentifyingCode extends AppCompatTextView {
     private static char[] nums = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     private static char[] lowers = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
-    private void setTextLength(int sum) {
+    public void setTextLength(int sum) {
+        // TODO: 2020-04-16 修改字符长度失效
         this.mSum = sum;
+        refreshText();
     }
 
     public void setTextOnChangedLisenter(OnChangeListener onChangeListener) {
-        if (mSum == -1) {
-            mSum = DEFAULT_NAM;
-        }
         this.mOnChangeListener = onChangeListener;
         refreshText();
     }
@@ -82,7 +83,6 @@ public class TextViewWithIdentifyingCode extends AppCompatTextView {
                 textSize = array.getDimensionPixelSize(attr, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics()));
             } else if (attr == R.styleable.TextViewWithIdentifyingCode_text_title) {
                 textTitle = array.getString(attr);
-                random(4);
                 textTitle = mRes;
             } else if (attr == R.styleable.TextViewWithIdentifyingCode_background_color) {
                 bgColor = array.getColor(attr, Color.BLUE);
