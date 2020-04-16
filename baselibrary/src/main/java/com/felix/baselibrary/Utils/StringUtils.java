@@ -24,6 +24,8 @@ public class StringUtils {
     }
 
     /**
+     * 字符串校验，支持忽略大小写，校验范围大小写字母以及数字
+     *
      * @param s1              字符串
      * @param s2              字符串
      * @param isIgnoreCapital 是否忽略大写
