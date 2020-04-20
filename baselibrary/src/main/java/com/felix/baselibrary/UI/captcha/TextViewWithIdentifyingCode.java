@@ -1,4 +1,4 @@
-package com.felix.baselibrary.UI;
+package com.felix.baselibrary.UI.captcha;
 
 import android.content.Context;
 import android.content.res.TypedArray;
