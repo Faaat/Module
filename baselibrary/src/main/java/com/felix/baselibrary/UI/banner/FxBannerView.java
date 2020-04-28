@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,7 +24,7 @@ import java.util.Map;
  * 广告条
  * 必须使用setData方法将数据传入，否则不能显示
  */
-public class BannerView extends RelativeLayout {
+public class FxBannerView extends RelativeLayout {
     // TODO: 2020/4/20 数据来源可配置
     private ViewPager mViewpagerMain;
     private TextView mTvName;
@@ -34,12 +35,12 @@ public class BannerView extends RelativeLayout {
     private ArrayList<Integer> imgs = new ArrayList<>();
     private ArrayList<String> strings = new ArrayList<>();
     private ArrayList<ImageView> imageViews;
-    private final static String TAG = BannerView.class.getSimpleName();
+    private final static String TAG = FxBannerView.class.getSimpleName();
     private int prePosition = 0;
 
     private boolean isCycle = true;
     private long mDelayMillis = 4000;
-    private BannerAdapter myAdapter;
+    private FxBannerAdapter myAdapter;
     private Context mContext;
     private Handler mHandler = new Handler(new Handler.Callback() {
         @Override
@@ -50,6 +51,7 @@ public class BannerView extends RelativeLayout {
         }
     });
     private LinearLayout mLlStatusBar;
+    private onBannerItemClickListener mItemClickListener;
 
     /**
      * @param adapter BannerAdapter
@@ -57,11 +59,30 @@ public class BannerView extends RelativeLayout {
      *                Integer：图片的标识，R.drawable.xxx
      *                String：图片描述
      */
-    public void setAdapter(BannerAdapter adapter, LinkedHashMap<Integer, String> map) {
-        myAdapter = new BannerAdapter();
+    public void setAdapter(FxBannerAdapter adapter, LinkedHashMap<Integer, String> map) {
+        myAdapter = new FxBannerAdapter();
         mData = map;
         initData();
         initView(mContext);
+    }
+
+    public void setData(LinkedHashMap<Integer, String> map) {
+        mData = map;
+        initData();
+        initView(mContext);
+    }
+
+    public void setOnBannerItemClickListener(onBannerItemClickListener listener) {
+        mItemClickListener = listener;
+        if (mItemClickListener != null) {
+            myAdapter.setOnItemClickListener(new FxBannerAdapter.OnAdapterItemClickListener() {
+                @Override
+                public void onItemClick(View v) {
+                    mItemClickListener.onItemClick(v);
+                    Log.d("BannerView", "onClick");
+                }
+            });
+        }
     }
 
     /**
@@ -78,21 +99,21 @@ public class BannerView extends RelativeLayout {
         mDelayMillis = mills;
     }
 
-    public BannerView(Context context) {
-        this(context, null);
-        mContext = context;
-    }
+        public FxBannerView(Context context) {
+            this(context, null);
+            mContext = context;
+        }
 
-    public BannerView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
-        mContext = context;
+        public FxBannerView(Context context, AttributeSet attrs) {
+            this(context, attrs, 0);
+            mContext = context;
 
-    }
+        }
 
-    public BannerView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        mContext = context;
-    }
+        public FxBannerView(Context context, AttributeSet attrs, int defStyleAttr) {
+            super(context, attrs, defStyleAttr);
+            mContext = context;
+        }
 
     private void initData() {
         imgs.clear();
@@ -115,6 +136,7 @@ public class BannerView extends RelativeLayout {
             return;
         }
         mLlStatusBar.setVisibility(VISIBLE);
+        mLlPointGroup.removeAllViews();
         for (int i = 0; i < imgs.size(); i++) {
             int imgSrc = imgs.get(i);
 //            添加图
@@ -181,8 +203,10 @@ public class BannerView extends RelativeLayout {
         int midItem = Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % imageViews.size();
         mViewpagerMain.setCurrentItem(midItem);
         mTvName.setText(strings.get(prePosition));
-        if (isCycle) mHandler.sendEmptyMessageDelayed(0, mDelayMillis);
+        mHandler.sendEmptyMessageDelayed(0, mDelayMillis);
     }
 
-
+    public interface onBannerItemClickListener {
+        void onItemClick(View v);
+    }
 }

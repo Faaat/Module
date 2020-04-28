@@ -1,5 +1,6 @@
 package com.felix.baselibrary.UI.banner;
 
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,11 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class BannerAdapter extends PagerAdapter {
+public class FxBannerAdapter extends PagerAdapter {
+    private static final String TAG = FxBannerAdapter.class.getSimpleName();
+    private OnAdapterItemClickListener mItemClickListener;
 
     public void setImageViews(ArrayList<ImageView> imageViews) {
         this.imageViews = imageViews;
@@ -26,9 +30,19 @@ public class BannerAdapter extends PagerAdapter {
         ImageView imageView = imageViews.get(realPosition);
         ViewPager parent = (ViewPager) imageView.getParent();
         if (parent != null) {
+            Log.d(TAG, "removeView(imageView)");
             parent.removeView(imageView);
         }
         container.addView(imageView, 0);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(v);
+                }
+                Log.d("BannerAdapter", "onClick");
+            }
+        });
         imageView.setTag(position);
         imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -67,4 +81,11 @@ public class BannerAdapter extends PagerAdapter {
 
     }
 
+    void setOnItemClickListener(OnAdapterItemClickListener listener) {
+        mItemClickListener = listener;
+    }
+
+    public interface OnAdapterItemClickListener {
+        void onItemClick(View v);
+    }
 }
