@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="TextViewWithIdentifyingCode">
+    <declare-styleable name="FxTextViewWithIdentifyingCode">
         <attr name="text_title" format="string" />
         <attr name="text_color" format="color" />
         <attr name="text_size" format="dimension" />

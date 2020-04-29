@@ -11,8 +11,8 @@ import androidx.appcompat.widget.AppCompatEditText;
  * Created by fangxin on 2020/4/15.
  */
 
-public class EditTextWithDrawable extends AppCompatEditText {
-    private static final String TAG = EditTextWithDrawable.class.getSimpleName();
+public class FxEditTextWithDrawable extends AppCompatEditText {
+    private static final String TAG = FxEditTextWithDrawable.class.getSimpleName();
 
     private Drawable[] mCompoundDrawables;
     private Drawable mCompoundRightDrawable;
@@ -28,18 +28,18 @@ public class EditTextWithDrawable extends AppCompatEditText {
         setText("");
     }
 
-    public EditTextWithDrawable(Context context) {
+    public FxEditTextWithDrawable(Context context) {
         super(context);
         init();
     }
 
-    public EditTextWithDrawable(Context context, AttributeSet attrs) {
+    public FxEditTextWithDrawable(Context context, AttributeSet attrs) {
 //        super(context, attrs);
         super(context, attrs, android.R.attr.editTextStyle);
         init();
     }
 
-    public EditTextWithDrawable(Context context, AttributeSet attrs, int defStyleAttr) {
+    public FxEditTextWithDrawable(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -50,6 +50,7 @@ public class EditTextWithDrawable extends AppCompatEditText {
         mCompoundTopDrawable = mCompoundDrawables[1];
         mCompoundRightDrawable = mCompoundDrawables[2];
         mCompoundBottomDrawable = mCompoundDrawables[3];
+
     }
 
     public void setOnRightDrawableClickListener(onDrawableRightClick clickListener) {

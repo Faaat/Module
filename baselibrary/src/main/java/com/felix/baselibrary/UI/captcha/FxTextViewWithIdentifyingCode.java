@@ -19,7 +19,7 @@ import com.felix.baselibrary.R;
  * Created by fangxin on 2020/4/16.
  */
 
-public class TextViewWithIdentifyingCode extends AppCompatTextView {
+public class FxTextViewWithIdentifyingCode extends AppCompatTextView {
     private String textTitle;
     private int textColor;
     private int textSize;
@@ -63,28 +63,28 @@ public class TextViewWithIdentifyingCode extends AppCompatTextView {
         requestLayout();
     }
 
-    public TextViewWithIdentifyingCode(Context context) {
+    public FxTextViewWithIdentifyingCode(Context context) {
         this(context, null);
     }
 
-    public TextViewWithIdentifyingCode(Context context, AttributeSet attrs) {
+    public FxTextViewWithIdentifyingCode(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public TextViewWithIdentifyingCode(Context context, AttributeSet attrs, int defStyleAttr) {
+    public FxTextViewWithIdentifyingCode(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.TextViewWithIdentifyingCode, defStyleAttr, 0);
+        TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.FxTextViewWithIdentifyingCode, defStyleAttr, 0);
         int length = array.length();
         for (int i = 0; i < length; i++) {
             int attr = array.getIndex(i);
-            if (attr == R.styleable.TextViewWithIdentifyingCode_text_color) {
+            if (attr == R.styleable.FxTextViewWithIdentifyingCode_text_color) {
                 textColor = array.getColor(attr, Color.BLUE);
-            } else if (attr == R.styleable.TextViewWithIdentifyingCode_text_size) {
+            } else if (attr == R.styleable.FxTextViewWithIdentifyingCode_text_size) {
                 textSize = array.getDimensionPixelSize(attr, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics()));
-            } else if (attr == R.styleable.TextViewWithIdentifyingCode_text_title) {
+            } else if (attr == R.styleable.FxTextViewWithIdentifyingCode_text_title) {
                 textTitle = array.getString(attr);
                 textTitle = mRes;
-            } else if (attr == R.styleable.TextViewWithIdentifyingCode_background_color) {
+            } else if (attr == R.styleable.FxTextViewWithIdentifyingCode_background_color) {
                 bgColor = array.getColor(attr, Color.BLUE);
             }
         }
