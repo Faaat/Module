@@ -12,3 +12,6 @@
 
 ## 4.自定义View--RecyclerView
 [自定义View--RecyclerView](https://blog.csdn.net/m0_37732679/article/details/105813487)
+
+## 5.自定义View--AlterDialog
+[自定义View--AlterDialog](https://blog.csdn.net/m0_37732679/article/details/105848248)
