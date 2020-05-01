@@ -1,5 +1,7 @@
 # 组件包
 
+[！[]（https://jitpack.io/v/Faaat/Module.svg）]（https://jitpack.io/#Faaat/Module）
+
 ## 1.banner--广告条
 
 [自定义View-Banner广告条](https://blog.csdn.net/m0_37732679/article/details/105717147)
