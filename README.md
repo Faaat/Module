@@ -1,11 +1,7 @@
 # 组件包
-
-### 2020年05月06日更新
 [![](https://jitpack.io/v/Faaat/Module.svg)](https://jitpack.io/#Faaat/Module)
+### 2020年05月06日更新 V0.1
 1. 完善组件的正常功能
-
-
-[![](https://jitpack.io/v/Faaat/Module.svg)](https://jitpack.io/#Faaat/Module)
 
 ## 1.banner--广告条
 
